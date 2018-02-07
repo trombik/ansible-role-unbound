@@ -1,2 +1,2 @@
-- name: reallyenglish.devfsrules
-- name: reallyenglish.x509-certificate
+- name: trombik.devfsrules
+- name: trombik.x509-certificate
