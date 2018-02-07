@@ -1,3 +1,14 @@
+## Release 2.1.2
+
+* a47a187 [bugfix] s/mitsuruy/trombik/g (#2)
+* 3b6bf67 [bugfix] Re-import the role and QA (#1)
+* 4bc937d [bugfix] fix third party repo, bump rubocop and QA (#49)
+* 6c1c70d [bugfix] bump CentOS versions (#46)
+* e8fbf56 bump specinfra (#45)
+* ddcb3cd [bugfix] QA (#44)
+* caecbf5 [bugfix] introduce unbound_include_role_x509_certificate (#43)
+* 39a8dbe [feature] implement unbound_flags (#42)
+
 ## Release 2.1.1
 
 * b91475b [bugfix] wrong examples in README (#39)
