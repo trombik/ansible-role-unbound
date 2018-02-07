@@ -1,3 +1,7 @@
+## Release 2.2.0
+
+* 8af7d1e [feature] Support FreeBSD 11.1 (#4)
+
 ## Release 2.1.2
 
 * a47a187 [bugfix] s/mitsuruy/trombik/g (#2)
