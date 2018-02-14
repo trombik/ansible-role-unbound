@@ -1,3 +1,7 @@
+## Release 2.3.0
+
+* 3cdfb44 [feature][bugfix] replace `include` with `include_*`, requiring ansible 2.4 #7
+
 ## Release 2.2.0
 
 * 8af7d1e [feature] Support FreeBSD 11.1 (#4)
