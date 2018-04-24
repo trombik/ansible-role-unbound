@@ -3,18 +3,19 @@
 
 - include_vars: "{{ ansible_os_family }}.yml"
 
-- import_tasks: deprecate.yml
-
 - set_fact:
     unbound_flags_merged: "{{ unbound_flags_default | combine(unbound_flags) }}"
 
-- include_tasks: "install-{{ ansible_os_family }}.yml"
+- name: Include install-{{ ansible_os_family }}.yml
+  include_tasks: "install-{{ ansible_os_family }}.yml"
 
-- import_tasks: "x509.yml"
+- name: Include x509.yml if unbound_include_role_x509_certificate
+  import_tasks: "x509.yml"
   when:
     - unbound_include_role_x509_certificate
 
-- include_tasks: "configure-{{ ansible_os_family }}.yml"
+- name: Include "configure-{{ ansible_os_family }}.yml"
+  include_tasks: "configure-{{ ansible_os_family }}.yml"
 
 - name: Register unbound version
   shell: "unbound -h | grep -E '^Version[[:space:]]+[[:digit:].]+$' | cut -f 2 -d' '"
@@ -33,10 +34,6 @@
       - unbound_version | match('\d+[\d.]+\d+')
   when:
     - not ansible_check_mode
-
-- include_tasks: "chroot-{{ ansible_os_family }}.yml"
-  when:
-    - unbound_config_chroot != ''
 
 - name: Create unbound_script_dir
   file:
