@@ -1,5 +1,9 @@
 ## Release 3.x.x
 
+* 8ab8f76 [bugfix] make unbound_version `--check` safe, update and fix README (#11)
+* cc08ff6 [feature] Support OpenBSD 6.3, drop EoLed releases (#10)
+* 551813b [backward incompatible] introduce unbound_config (#9)
+
 ### Backward incompatibilities
 
 This release introduces backward incompatibilities.
