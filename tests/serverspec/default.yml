@@ -58,7 +58,7 @@
       {% if unbound_version | version_compare('1.5.2', '>=') %}
         control-use-cert: no
       {% endif %}
-      {% if (ansible_distribution == 'Ubuntu' and ansible_distribution_version | version_compare('14.04', '<=')) or (ansible_distribution == 'CentOS' and ansible_distribution_version | version_compare('7.4.1708', '<=')) %}
+      {% if unbound_version | version_compare('1.5.3', '<=') %}
         control-interface: 127.0.0.1
       {% else %}
         control-interface: /var/run/unbound.sock
