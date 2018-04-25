@@ -2,19 +2,6 @@
 
 Configures `unbound`.
 
-## chroot support
-
-When `unbound_config_chroot` is not empty, the role creates necessary files for
-unbound. Supported platform includes:
-
-* OpenBSD
-* FreeBSD
-
-The implementation of `unbound_config_chroot` is quite hackish and is subject
-to change.
-
-See `tests/serverspec/chroot.yml` for the details.
-
 # Requirements
 
 None
@@ -26,6 +13,7 @@ None
 | `unbound_user` | user of `unbound` | `{{ __unbound_user }}` |
 | `unbound_group` | group of `unbound` | `{{ __unbound_group }}` |
 | `unbound_service` | service name of `unbound` | `unbound` |
+| `unbound_package` | package name of `unbound` | `unbound` |
 | `unbound_conf_dir` | path to config directory | `{{ __unbound_conf_dir }}` |
 | `unbound_conf_file` | path to `unbound.conf(5)` | `{{ unbound_conf_dir }}/unbound.conf` |
 | `unbound_flags` | dict of variables and their values in startup scripts. this variable is combined with `unbound_flags_default` (see below). | `{}` |
@@ -111,7 +99,8 @@ value is empty string.
 
 # Dependencies
 
-None
+* [`trombik.x509-certificate`](https://github.com/trombik/ansible-role-x509-certificate)
+  if `unbound_include_role_x509_certificate` is set to true value.
 
 # Example Playbook
 
@@ -176,7 +165,7 @@ None
       {% if unbound_version | version_compare('1.5.2', '>=') %}
         control-use-cert: no
       {% endif %}
-      {% if (ansible_distribution == 'Ubuntu' and ansible_distribution_version | version_compare('14.04', '<=')) or (ansible_distribution == 'CentOS' and ansible_distribution_version | version_compare('7.4.1708', '<=')) %}
+      {% if unbound_version | version_compare('1.5.3', '<=') %}
         control-interface: 127.0.0.1
       {% else %}
         control-interface: /var/run/unbound.sock
