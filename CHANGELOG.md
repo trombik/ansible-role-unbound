@@ -1,4 +1,4 @@
-## Release 3.x.x
+## Release 3.0.0
 
 * 8ab8f76 [bugfix] make unbound_version `--check` safe, update and fix README (#11)
 * cc08ff6 [feature] Support OpenBSD 6.3, drop EoLed releases (#10)
