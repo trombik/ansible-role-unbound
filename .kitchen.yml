@@ -23,9 +23,19 @@ provisioner:
   ansible_vault_password_file: <%= File.expand_path(ENV['ANSIBLE_VAULT_PASSWORD_FILE'] || '') %>
 
 platforms:
-  - name: freebsd-11.1-amd64
+  - name: freebsd-10.4-amd64
     driver:
-      box: trombik/ansible-freebsd-11.1-amd64
+      box: trombik/ansible-freebsd-10.4-amd64
+      box_check_update: false
+    driver_config:
+      ssh:
+        shell: '/bin/sh'
+    provisioner:
+      extra_vars:
+        ansible_python_interpreter: '/usr/local/bin/python'
+  - name: freebsd-11.2-amd64
+    driver:
+      box: trombik/ansible-freebsd-11.2-amd64
       box_check_update: false
     driver_config:
       ssh:
@@ -91,4 +101,4 @@ suites:
       # this test is intended to be a test that ensures the role includes
       # `x509-certificate` when told so, which is specific to the role, not
       # platforms. thus, testing on a signle platform is sufficient.
-      - freebsd-11.1-amd64
+      - freebsd-11.2-amd64
