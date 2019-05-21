@@ -105,6 +105,7 @@ value is empty string.
 # Example Playbook
 
 ```yaml
+---
 - hosts: localhost
   roles:
     - ansible-role-unbound
@@ -162,10 +163,10 @@ value is empty string.
         stub-addr: "8.8.8.8"
       remote-control:
         control-enable: yes
-      {% if unbound_version | version_compare('1.5.2', '>=') %}
+      {% if unbound_version is version_compare('1.5.2', '>=') %}
         control-use-cert: no
       {% endif %}
-      {% if unbound_version | version_compare('1.5.3', '<=') %}
+      {% if unbound_version is version_compare('1.5.3', '<=') %}
         control-interface: 127.0.0.1
       {% else %}
         control-interface: /var/run/unbound.sock

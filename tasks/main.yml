@@ -24,7 +24,7 @@
 - name: Assert unbound_version is in the expected format
   assert:
     that:
-      - unbound_version | match('^\d+\.\d+\.\d+$')
+      - unbound_version is match('^\d+\.\d+\.\d+$')
     msg: |
       [BUG] unbound_version does not match expected version pattern.
       This means the role has a bug in it.
