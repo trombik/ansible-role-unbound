@@ -101,3 +101,10 @@
   service:
     name: "{{ unbound_service }}"
     state: started
+
+- name: Include flush_handlers.yml and force flush_handlers meta action
+  # XXX `meta` module does not honor `when`.
+  # see https://github.com/ansible/ansible/issues/41313
+  include_tasks: flush_handlers.yml
+  when:
+    - unbound_force_flush_handlers
