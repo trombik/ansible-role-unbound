@@ -3,9 +3,6 @@
 
 - include_vars: "{{ ansible_os_family }}.yml"
 
-- set_fact:
-    unbound_flags_merged: "{{ unbound_flags_default | combine(unbound_flags) }}"
-
 - name: Include fact-{{ ansible_os_family }}.yml
   include_tasks: "fact-{{ ansible_os_family }}.yml"
 
