@@ -25,6 +25,7 @@ None
 | `unbound_config_control_key_file` | `control-key-file` | `{{ unbound_conf_dir }}/unbound_control.key` |
 | `unbound_config_control_cert_file` | `control-cert-file` | `{{ unbound_conf_dir }}/unbound_control.pem` |
 | `unbound_config` | content of `unbound.conf(5)` | `""` |
+| `unbound_force_flush_handlers` | if true, run [`flush_handlers` meta action](https://docs.ansible.com/ansible/latest/modules/meta_module.html) at the end of all tasks in the role, instead of at the end of all the `ansible` play | `no` |
 
 ## `unbound_flags`
 
@@ -33,6 +34,20 @@ variants, the value is the content of `/etc/default/unbound`. In RedHat
 variants, it is the content of `/etc/sysconfig/unbound`. In FreeBSD, it
 is the content of `/etc/rc.conf.d/unbound`. In OpenBSD, the value is
 passed to `rcctl set unbound flags`.
+
+## Notes about `unbound_force_flush_handlers`
+
+When `unbound_force_flush_handlers` is `yes`, all the pending handlers are
+_flushed_, meaning, all pending handlers on other hosts in the play, including
+ones that do not play _this role_, are executed. You have to ensure this
+side-effect will not cause issues in the play. One solution is, do not run a
+play with this role on other hosts. The other one is to ensure all other roles
+or tasks _before_ this role will not trigger any handler.
+
+`meta` ansible module does not support `when`. If you set
+`unbound_force_flush_handlers` to `yes`, `ansible` warns that "flush_handlers
+task does not support when conditional". There is no way to suppress the
+warning. See also [issue 4131](https://github.com/ansible/ansible/issues/41313).
 
 ## Debian
 
