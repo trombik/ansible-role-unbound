@@ -97,11 +97,11 @@ warning. See also [issue 4131](https://github.com/ansible/ansible/issues/41313).
 # Example Playbook
 
 ```yaml
----
 - hosts: localhost
   roles:
     - ansible-role-unbound
   vars:
+    unbound_force_flush_handlers: yes
     os_unbound_flags:
       FreeBSD: |
         unbound_flags="-v"
@@ -156,14 +156,8 @@ warning. See also [issue 4131](https://github.com/ansible/ansible/issues/41313).
         stub-addr: "8.8.8.8"
       remote-control:
         control-enable: yes
-      {% if unbound_version is version_compare('1.5.2', '>=') %}
         control-use-cert: no
-      {% endif %}
-      {% if unbound_version is version_compare('1.5.3', '<=') %}
-        control-interface: 127.0.0.1
-      {% else %}
         control-interface: /var/run/unbound.sock
-      {% endif %}
         server-key-file: {{ unbound_conf_dir }}/unbound_server.key
         server-cert-file: {{ unbound_conf_dir }}/unbound_server.pem
         control-key-file: {{ unbound_conf_dir }}/unbound_control.key
