@@ -5,5 +5,3 @@
   register: register_unbound_version
   check_mode: no
   changed_when: false
-  when:
-    - ansible_distribution == 'Ubuntu'
