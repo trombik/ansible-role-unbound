@@ -1,3 +1,9 @@
+## Release 4.0.1
+
+* 1471b02 bugfix: QA
+* a0e400a bugfix: update boxes
+* 99bc6c1 bugfix: remove guard clause
+
 ## Release 4.0.0
 
 * 8ba6d1b bugfix: introduce `unbound_force_flush_handlers`
